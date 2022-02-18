@@ -74,6 +74,8 @@ public class IonicWebViewEngine extends SystemWebViewEngine {
       final WebSettings settings = webView.getSettings();
       int mode = preferences.getInteger("MixedContentMode", 0);
       settings.setMixedContentMode(mode);
+      settings.setAllowFileAccess(true);
+      settings.setAllowUniversalAccessFromFileURLs(true);
     }
     SharedPreferences prefs = cordova.getActivity().getApplicationContext().getSharedPreferences(IonicWebView.WEBVIEW_PREFS_NAME, Activity.MODE_PRIVATE);
     String path = prefs.getString(IonicWebView.CDV_SERVER_PATH, null);

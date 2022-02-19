@@ -57,6 +57,8 @@ public class IonicWebViewEngine extends SystemWebViewEngine {
   public void init(CordovaWebView parentWebView, CordovaInterface cordova, final CordovaWebViewEngine.Client client,
                    CordovaResourceApi resourceApi, PluginManager pluginManager,
                    NativeToJsMessageQueue nativeToJsMessageQueue) {
+
+    Log.d(TAG, "In init");
     ConfigXmlParser parser = new ConfigXmlParser();
     parser.parse(cordova.getActivity());
 
@@ -71,9 +73,13 @@ public class IonicWebViewEngine extends SystemWebViewEngine {
 
     super.init(parentWebView, cordova, client, resourceApi, pluginManager, nativeToJsMessageQueue);
     if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+
+      Log.d(TAG, webView.getSettings().getClass() + "webView Settings class");
       final WebSettings settings = webView.getSettings();
       int mode = preferences.getInteger("MixedContentMode", 0);
       settings.setMixedContentMode(mode);
+
+      Log.d(TAG, "Setting AndroidInsecureFileModeEnabled props");
       settings.setAllowFileAccess(true);
       settings.setAllowUniversalAccessFromFileURLs(true);
     }
